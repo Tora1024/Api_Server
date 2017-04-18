@@ -4,6 +4,7 @@ const http = require('http');
 const bodyParser = require('body-parser'); //Used for parsing incoming request, JSON in this case
 const morgan = require('morgan'); //logging framework, mostly just for debugging.
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 const router = require('./router');
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost:auth/auth');
 // App setup
 /* These two serves as middleware, kind of a filther like */
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 
